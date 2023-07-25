@@ -7,6 +7,8 @@ import java.util.List;
 public interface UserService<T extends User> {
     void create(String fullName, Integer age, String phoneNumber, String groupTitle);
 
+    void updateGroupTitleById(int id, String groupTitle);
+
     List<T> getAll();
 
     List<T> getAllSortByFullName();
