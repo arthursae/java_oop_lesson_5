@@ -119,7 +119,7 @@ public class UniversityApp {
                         }
 
                         if (id > 0) {
-                            student.updatUserGroupById(id, commands[2]);
+                            student.updateUserGroupById(id, commands[2]);
                         } else {
                             System.out.println("Не удалось обновить данные с id = " + id);
                         }
