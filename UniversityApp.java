@@ -39,18 +39,6 @@ public class UniversityApp {
         teacher.create("Konstantin Sidorov", 42, "108", "11А");
         teacher.create("Maria Pavlova", 33, "234", "10А");
 
-        //groupView.printAllFromGroup("11А");
-        //groupView.printAllFromGroup("10А");
-        //student.sendOnConsole();
-        //student.sendOnConsole(SortType.NAME);
-        //student.sendOnConsole(SortType.ID);
-
-        //student.removeUser("Ivan Morozov");
-
-        //student.sendOnConsole(SortType.NAME);
-        //teacher.sendOnConsole(SortType.NAME);
-
-
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -94,7 +82,7 @@ public class UniversityApp {
                         try {
                             studentAge = Integer.parseInt(commands[2]);
                         } catch (NumberFormatException ex) {
-                            System.out.println("Указан неправильный возраст студентв");
+                            System.out.println("Указан неправильный возраст студента");
                         }
 
                         if (studentAge != null) {
@@ -122,7 +110,20 @@ public class UniversityApp {
 
                 } else if ("/set-group-student-by-id".equalsIgnoreCase(commands[0])) {
                     if (commandslength == 3) {
-                        // что должна делать эта команда не понятно...
+                        int id = -1;
+
+                        try {
+                            id = Integer.parseInt(commands[1]);
+                        } catch (NumberFormatException ex) {
+                            System.out.println("Указан неправильный формат айди");
+                        }
+
+                        if (id > 0) {
+                            student.updatUserGroupById(id, commands[2]);
+                        } else {
+                            System.out.println("Не удалось обновить данные с id = " + id);
+                        }
+
                     } else {
                         System.out.println("Не указаны все данные: айди и название группы");
                     }
