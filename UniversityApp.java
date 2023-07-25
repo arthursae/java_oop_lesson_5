@@ -109,10 +109,15 @@ public class UniversityApp {
 
                 } else if ("/delete-teacher".equalsIgnoreCase(commands[0])) {
                     if (commandslength == 2) {
-                        String teacherName = commands[1];
-                        teacher.removeUser(teacherName.replace("_", " "));
+                        String teacherName = commands[1].replace("_", " ");
+                        int counter = teacher.removeUser(teacherName);
+                        if (counter > 0) {
+                            System.out.println("Учитель удален: " + counter);
+                        } else {
+                            System.out.println("Учитель с именем " + teacherName + " отсутствует в списке");
+                        }
                     } else {
-                        System.out.println("Не указано имя учителя");
+                        System.out.println("Не указано имя учителя: имя_фамилия");
                     }
 
                 } else if ("/set-group-student-by-id".equalsIgnoreCase(commands[0])) {
@@ -122,7 +127,7 @@ public class UniversityApp {
                         System.out.println("Не указаны все данные: айди и название группы");
                     }
                 } else {
-                    System.out.println("Неправильная комманда");
+                    System.out.println("Неправильная команда");
                 }
             }
         }
