@@ -43,8 +43,9 @@ public class TeacherView implements UserView {
     }
 
     @Override
-    public void removeUser(String fullName) {
+    public int removeUser(String fullName) {
         int removeCount = controller.remove(fullName);
         System.out.println("Удалено учителей: " + removeCount);
+        return removeCount;
     }
 }
