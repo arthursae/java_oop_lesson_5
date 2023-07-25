@@ -9,28 +9,37 @@ import java.util.stream.Collectors;
 
 public class TeacherRepository implements UserRepository<Teacher> {
 
-    private final List<Teacher> students;
+    private final List<Teacher> teachers;
 
     public TeacherRepository() {
-        this.students = new ArrayList<>();
+        this.teachers = new ArrayList<>();
     }
 
     @Override
     public void create(Teacher teacher) {
         teacher.setId(getMaxId() + 1);
-        students.add(teacher);
+        teachers.add(teacher);
+    }
+
+    @Override
+    public void updateGroupTitleById(int id, String groupTitle) {
+        for (Teacher teacher : teachers) {
+            if (teacher.getId().intValue() == id) {
+                teacher.setGroupTitle(groupTitle);
+            }
+        }
     }
 
     @Override
     public List<Teacher> getAll() {
-        return students;
+        return teachers;
     }
 
     @Override
     public int remove(String fullName) {
         int removeCount = 0;
 
-        Iterator<Teacher> iterator = students.iterator();
+        Iterator<Teacher> iterator = teachers.iterator();
         while (iterator.hasNext()) {
             Teacher teacher = iterator.next();
             if (teacher.getFullName().equals(fullName)) {
@@ -43,14 +52,14 @@ public class TeacherRepository implements UserRepository<Teacher> {
 
     @Override
     public List<Teacher> getAllByGroupTitle(String groupTitle) {
-        return students.stream()
+        return teachers.stream()
                 .filter(student -> student.getGroupTitle().equals(groupTitle))
                 .collect(Collectors.toList());
     }
 
     private Long getMaxId() {
         Long maxId = 0L;
-        for (Teacher student : students) {
+        for (Teacher student : teachers) {
             if (student.getId() > maxId) {
                 maxId = student.getId();
             }
