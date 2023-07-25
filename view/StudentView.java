@@ -44,8 +44,11 @@ public class StudentView implements UserView {
 
     @Override
     public int removeUser(String fullName) {
-        int removeCount = controller.remove(fullName);
-        System.out.println("Удалено студентов: " + removeCount);
-        return removeCount;
+        return controller.remove(fullName);
+    }
+
+    @Override
+    public void updateUserGroupById(int id, String groupTitle) {
+        controller.updateGroupTitleById(id, groupTitle);
     }
 }
