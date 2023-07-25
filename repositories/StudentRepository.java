@@ -27,6 +27,17 @@ public class StudentRepository implements UserRepository<Student> {
     }
 
     @Override
+    public void updateGroupTitleById(int id, String groupTitle) {
+        for (Student student : students) {
+            if (student.getId().intValue() == id) {
+                String oldGroup = student.getGroupTitle();
+                student.setGroupTitle(groupTitle);
+                System.out.println("Старая группа: " + oldGroup + ", новая группа: " + groupTitle);
+            }
+        }
+    }
+
+    @Override
     public int remove(String fullName) {
         int removeCount = 0;
 
