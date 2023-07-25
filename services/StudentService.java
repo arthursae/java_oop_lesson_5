@@ -22,6 +22,17 @@ public class StudentService implements UserService<Student> {
     }
 
     @Override
+    public void updateGroupTitleById(int id, String groupTitle) {
+        var students = userRepository.getAll();
+
+        for (Student student : students) {
+            if (student.getId().intValue() == id) {
+                userRepository.updateGroupTitleById(id, groupTitle);
+            }
+        }
+    }
+
+    @Override
     public List<Student> getAll() {
         var students = userRepository.getAll();
         Collections.sort(students);
