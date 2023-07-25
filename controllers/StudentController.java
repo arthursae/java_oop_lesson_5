@@ -19,6 +19,11 @@ public class StudentController implements UserController<Student> {
         userService.create(fullName, age, phoneNumber, groupTitle);
     }
 
+    @Override
+    public void updateGroupTitleById(int id, String groupTitle) {
+        userService.updateGroupTitleById(id, groupTitle);
+    }
+
     //@GetMethod("/students")
     @Override
     public List<Student> getAll() {
