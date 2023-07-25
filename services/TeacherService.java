@@ -22,6 +22,17 @@ public class TeacherService implements UserService<Teacher> {
     }
 
     @Override
+    public void updateGroupTitleById(int id, String groupTitle) {
+        var teachers = userRepository.getAll();
+
+        for (Teacher teacher : teachers) {
+            if (teacher.getId().intValue() == id) {
+                userRepository.updateGroupTitleById(id, groupTitle);
+            }
+        }
+    }
+
+    @Override
     public List<Teacher> getAll() {
         var teachers = userRepository.getAll();
         Collections.sort(teachers);
